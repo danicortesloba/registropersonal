@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+  <p>
+        <strong>Proyecto:</strong>
+        <%= @project.name %>
+</p>
+  <ul>
+      <% @project.contracts.each do |contract|%>
+      <li><%= contract.person.name %>
+      <%= link_to 'Sacar empleado', contract, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      <% end %>
+ </ul>
+
+<%= form_with(model: @contract, local: true) do |form| %>
+<h5>
+  Asignar Empleado
+</h5>
+<%= form.hidden_field :project_id, :value => @project.id %>
+<%= form.collection_select(:person_id, Person.all, :id, :name) %>
+
+<div class="actions">
+  <%= form.submit %>
+</div>
+
+<% end %>
+<%= link_to 'Editar', edit_project_path(@project) %> |
+<%= link_to 'Proyectos', projects_path %>

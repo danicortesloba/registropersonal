@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Proyectos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= project.name %></td>
+        <td><%= link_to 'Ver empleados', project %></td>
+        <td><%= link_to 'Editar', edit_project_path(project) %></td>
+        <td><%= link_to 'Eliminar Proyecto', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Proyecto', new_project_path %>
+<%= link_to 'Ver lista de empleados', people_path %>
